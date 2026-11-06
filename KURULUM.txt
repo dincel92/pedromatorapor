@@ -1,0 +1,73 @@
+PedromatoRapor — internette yayımlama ve APK oluşturma
+=======================================================
+
+Bu klasör, uygulamanın telefona kurulabilen (PWA) sürümüdür:
+  index.html            uygulamanın kendisi
+  manifest.webmanifest  uygulama adı, simgesi, renkleri
+  sw.js                 internetsiz çalışma desteği
+  icons/                uygulama simgeleri
+  .nojekyll             GitHub Pages için (silmeyin)
+
+Klasörü olduğu gibi yayımlayın; dosya adlarını değiştirmeyin.
+
+
+ADIM 1 — Klasörü ücretsiz bir adreste yayımlayın
+------------------------------------------------
+Önerilen: Netlify (APK'da adres çubuğunun gizlenmesi için gerekli dosya
+sitenin kök dizinine konabildiği için en sorunsuz yol budur.)
+
+  1. https://app.netlify.com adresinde ücretsiz hesap açın.
+  2. "Add new site" → "Deploy manually" seçin.
+  3. Bu PedromatoRapor klasörünü sayfaya sürükleyip bırakın.
+  4. Size https://...netlify.app biçiminde bir adres verilir.
+     Site ayarlarından adı değiştirebilirsiniz (ör. pedromatorapor.netlify.app).
+
+Alternatif: GitHub Pages
+  1. github.com'da yeni bir depo açın, bu klasördeki dosyaları yükleyin.
+  2. Settings → Pages → Branch: main, klasör: / (root) → Save.
+  3. Adres: https://KULLANICIADI.github.io/DEPOADI/
+  Not: Bu adreste APK açıldığında üstte adres çubuğu görünebilir (bkz. Adım 3).
+
+Bu adımdan sonra adres zaten bir uygulama gibi çalışır:
+  - Android Chrome: menü → "Uygulamayı yükle" / "Ana ekrana ekle"
+  - iPhone Safari: Paylaş → "Ana Ekrana Ekle"
+İlk açılıştan sonra internet olmadan da çalışır.
+
+
+ADIM 2 — APK oluşturun (PWABuilder)
+-----------------------------------
+  1. https://www.pwabuilder.com adresine gidin.
+  2. Adım 1'de aldığınız adresi yazıp "Start" deyin.
+  3. "Package for stores" → "Android" → "Generate Package".
+  4. İnen zip dosyasında:
+       - .apk dosyası: telefona doğrudan kurulur (arkadaşlarınıza bunu gönderin)
+       - .aab dosyası: yalnız Google Play'e yüklemek isterseniz
+       - signing key dosyası ve şifre bilgisi: SAKLAYIN. Sonraki APK sürümleri
+         aynı anahtarla imzalanmazsa telefonlar güncellemeyi kabul etmez.
+  5. APK'yı kuracak kişi telefonda "bilinmeyen kaynaklardan yüklemeye izin ver"
+     seçeneğini açmalıdır. iPhone APK kuramaz; iPhone kullananlar Adım 1'deki
+     "Ana Ekrana Ekle" yolunu kullanır.
+
+
+ADIM 3 — Adres çubuğunu gizlemek (isteğe bağlı)
+-----------------------------------------------
+PWABuilder'ın verdiği zip içinde "assetlinks.json" dosyası vardır.
+  - Netlify'da: bu klasörde ".well-known" adında bir klasör açın, assetlinks.json
+    dosyasını içine koyun ve klasörü yeniden yükleyin.
+  - Bu dosya yoksa APK yine çalışır, yalnızca üstte ince bir adres çubuğu görünür.
+
+
+GÜNCELLEME
+----------
+  - Uygulamanın yeni sürümünde yalnızca index.html'i değiştirin ve sw.js içindeki
+    SURUM satırını yeni bir değere çevirin (ör. tarih). Sonra klasörü yeniden
+    yükleyin.
+  - APK siteyi açtığı için yeni APK gerekmez; telefonlar güncellemeyi bir sonraki
+    açılışta alır.
+
+
+HATIRLATMA
+----------
+  - Uygulamaya girilen hasta bilgileri hiçbir yere kaydedilmez ve sunucuya gitmez.
+  - İçerik SUT 29.06.2026 işlenmiş metnine dayanır; ölçüt sonucu SGK ödeme
+    garantisi değildir. Dozlar sayfası poliklinik sunumundan aynen aktarılmıştır.

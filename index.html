@@ -1383,7 +1383,7 @@ function renderSkor(id){ const sc=SC.find(s=>s.id===id); if(!sc){ location.hash=
 }
 
 function renderDoz(){ $("#bt").hidden=true; const D=window.DOZ||[];
- app.innerHTML=`<div class="wrap"><button class="btn sm" id="back" style="margin-top:12px">← Şablonlar</button><h1>Doz ve order notları</h1><p class="meta">Polikliniğinizin “Raporlar–İlaçlar” sunumundan (slayt 93–96) aynen aktarılmıştır; uygulama bu değerleri doğrulamamıştır.</p>
+ app.innerHTML=`<div class="wrap"><button class="btn sm" id="back" style="margin-top:12px">← Şablonlar</button><h1>Doz ve order notları</h1>
  ${D.map(sec=>`<section class="sect"><div class="tbl" style="padding:12px 14px"><h2 style="margin-bottom:8px">${esc(sec[0])}</h2>${sec.slice(1).map(l=>/^(csDMARDs|bDMARDs|Premedikasyon|Tedavi|Order|Rituksimab|Siklofosfamid|İnfliksimab|Tosilizumab|IVIG|Pulse prednol|Tosilizumab, Anakinra, Canakinumab|Rituksimab, Abatacept, Tofacitinib, IVIG)/.test(l)&&l.length<45?`<div class="lbl" style="margin:12px 0 4px">${esc(l)}</div>`:`<div style="font-size:.92rem;padding:2px 0">${esc(l)}</div>`).join("")}</div></section>`).join("")}</div>`;
  $("#back").onclick=()=>{ location.hash=""; }; }
 function route(){ const h=(location.hash||"").slice(1); if(h==="dozlar"){ S.tid=null; renderDoz(); window.scrollTo(0,0); return; }
